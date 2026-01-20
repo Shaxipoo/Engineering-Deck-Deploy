@@ -1,0 +1,48 @@
+# Cloudflare Pages Headers Configuration for Unity WebGL
+
+# Brotli compressed files
+/Build/*.br
+  Content-Encoding: br
+
+# WebAssembly MIME type
+/Build/*.wasm
+  Content-Type: application/wasm
+
+/Build/*.wasm.br
+  Content-Type: application/wasm
+  Content-Encoding: br
+
+# JavaScript files
+/Build/*.js
+  Content-Type: application/javascript
+
+/Build/*.js.br
+  Content-Type: application/javascript
+  Content-Encoding: br
+
+# Data files
+/Build/*.data.br
+  Content-Type: application/octet-stream
+  Content-Encoding: br
+
+# Framework files
+/Build/*.framework.js.br
+  Content-Type: application/javascript
+  Content-Encoding: br
+
+# Security headers
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Cache control for static assets
+/Build/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/TemplateData/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Don't cache the main HTML file
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
