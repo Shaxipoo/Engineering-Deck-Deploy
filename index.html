@@ -5,33 +5,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | EngineeringDeck</title>
   </head>
-  <body style="padding: 0; border: 0; margin: 0; overflow: hidden;">
-    <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1" style="width: 100vw; height: 100vh; background: #231F20; display: block;"></canvas>
-    <script src="Build/Build v0.9.loader.js"></script>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <canvas id="unity-canvas" width=2160 height=1440 tabindex="-1" style="width: 2160px; height: 1440px; background: #231F20"></canvas>
+    <script src="Build/Build v1.0.loader.js"></script>
     <script>
-      // Make canvas always fill the browser viewport (desktop and mobile)
-      function resizeCanvas() {
-        var canvas = document.querySelector("#unity-canvas");
-        if (!canvas) return;
-        canvas.style.width = window.innerWidth + "px";
-        canvas.style.height = window.innerHeight + "px";
-      }
-      window.addEventListener('resize', resizeCanvas);
-      window.addEventListener('load', resizeCanvas);
-
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
         meta.name = 'viewport';
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
+
+        var canvas = document.querySelector("#unity-canvas");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
+        document.body.style.textAlign = "left";
+
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
-        dataUrl: "Build/Build v0.9.data.unityweb",
-        frameworkUrl: "Build/Build v0.9.framework.js.unityweb",
-        codeUrl: "Build/Build v0.9.wasm.unityweb",
+        dataUrl: "Build/Build v1.0.data.unityweb",
+        frameworkUrl: "Build/Build v1.0.framework.js.unityweb",
+        codeUrl: "Build/Build v1.0.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "STARSOULSSTUDIOS",
         productName: "EngineeringDeck",
