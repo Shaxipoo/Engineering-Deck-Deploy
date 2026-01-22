@@ -8,19 +8,12 @@
       html, body {
         margin: 0;
         padding: 0;
+        width: 100%;
         height: 100%;
+        overflow: hidden;
       }
       body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      #top-bar {
-        height: 100px; /* Adjust this height to control how much space is above the game */
-      }
-      #game-container {
-        flex: 1 1 auto;
-        display: flex;
+        text-align: center;
       }
       #unity-canvas {
         width: 100%;
@@ -31,13 +24,8 @@
     </style>
   </head>
   <body>
-    <div id="top-bar">
-      <!-- Content above the game goes here -->
-    </div>
-    <div id="game-container">
-      <canvas id="unity-canvas" width=2160 height=1440 tabindex="-1"></canvas>
-    </div>
-    <script src="Build/Build v1.1.loader.js"></script>
+    <canvas id="unity-canvas" width=2160 height=1440 tabindex="-1"></canvas>
+    <script src="Build/Build v1.2.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -47,16 +35,19 @@
         document.getElementsByTagName('head')[0].appendChild(meta);
 
         var canvas = document.querySelector("#unity-canvas");
-        // Layout is handled via CSS to make the game fill the lower portion of the window.
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
         document.body.style.textAlign = "left";
 
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
-        dataUrl: "Build/Build v1.1.data.unityweb",
-        frameworkUrl: "Build/Build v1.1.framework.js.unityweb",
-        codeUrl: "Build/Build v1.1.wasm.unityweb",
+        dataUrl: "Build/Build v1.2.data.unityweb",
+        frameworkUrl: "Build/Build v1.2.framework.js.unityweb",
+        codeUrl: "Build/Build v1.2.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "STARSOULSSTUDIOS",
         productName: "EngineeringDeck",
